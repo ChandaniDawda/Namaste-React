@@ -1,13 +1,16 @@
-
+import useContext from "react";
 import { ID1_URL } from "../utils/constants";
 import { ID2_URL } from "../utils/constants";
 import { ID3_URL } from "../utils/constants";
 import { ID4_URL } from "../utils/constants";
 import { ID5_URL } from "../utils/constants";
-
+import userContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
     const {resData} = props;
+    const {loggedInUser} = useContext(userContext);
+
+
 
     const {
 
@@ -36,7 +39,9 @@ const RestaurantCard = (props) => {
             <h4>{cuisines.join (",")}</h4>
             <h4>{avgRating} ⭐</h4>
             <h4>{costForTwo} FOR TWO</h4>
-            <h4>{deliveryTime} mins</h4>    
+            <h4>{deliveryTime} mins</h4>
+            <h4>User :{loggedInUser} </h4>   
+
         </div>
     );
 };

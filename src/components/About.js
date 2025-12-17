@@ -1,7 +1,7 @@
 import User from "./User";
 import UserClass from "./UserClass";
 import { Component } from "react";
-
+import UserContext from "../utils/UserContext";
  
 class About extends Component {
 
@@ -21,6 +21,13 @@ class About extends Component {
         return (
       <div>
         <h1>About Class Component</h1>
+        <div> LoggedIn User</div>
+        <UserContext.Consumer>
+
+        {({loggedInUser}) => (
+            <h2 className="text-xl font-bold">{loggedInUser}</h2>
+        )}
+        </UserContext.Consumer>
         <h2>Welcome to Food Express! We are passionate about delivering delicious meals right to your doorstep. 
         Our mission is to connect food lovers with their favorite restaurants and provide a seamless ordering experience.</h2>
         

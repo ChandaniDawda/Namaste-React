@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, use } from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,6 +8,8 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { useState, useEffect } from "react";
+import UserContext from "./utils/UserContext";
 //import Grocery from "./components/Grocery";
 
 
@@ -52,12 +54,24 @@ const Footer = () => {
 const Grocery = lazy(() => import("./components/Grocery"));
 // ✅ App Layout
 const AppLayout = () => {
+
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const data = {
+      name: "Chandani Dawda",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <>
-      <Header />
-      <Outlet /> {/* to render the matched child route component */}
-      <Footer />
-    </>
+    <UserContext.Provider value={{ loggedInUser: userName }}>
+      <>
+        <Header />
+        <Outlet />
+        <Footer />
+      </>
+    </UserContext.Provider>
   );
 };
 
@@ -70,9 +84,12 @@ const appRouter = createBrowserRouter ([
     children: [
       {
         path: "/about",
-        element: ( <Suspense fallback= { <h1>Loading...</h1>} >,
-        <About />,</Suspense>
-        ),
+        element: (
+            <Suspense fallback={<h1>Loading...</h1>}>
+    <About />
+  </Suspense>
+),
+
       },
       {
         path: "/",

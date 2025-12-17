@@ -1,15 +1,33 @@
-const RestaurantCategory = ({ data }) => {
-    console.log(data);
-    return (
-        <div>
-            {/* Header for the category */}
-           <div className="w-full flex justify-between bg-gray-200 p-2 m-2 cursor-pointer">
-            <span>{data.title}</span>
-            <span>⬇️</span>
-           </div>
-            {/* Accordion Body */}
-            </div>
-    );
+import { useState } from "react";
+import ItemList from "./ItemList";
+
+const RestaurantCategory = ({ data, showItems, setShowIndex, dummy }) => {
+ 
+  const handleClick = () => {
+    setShowIndex();
+  };
+
+  return (
+
+    <div>
+    {/* Header */}
+     <div className="w-6/12 mx-auto bg-gray-50 p-4 my-4">
+      <div className="cursor-pointer flex justify-between"  onClick={handleClick}
+      
+      >
+        <span className="font-bold text-lg ">
+          {data.title} ({data.itemCards?.length})
+
+        </span>
+        <span>⬇️</span>
+      </div>
+
+      {/* Body */}
+
+     {showItems && <ItemList items={data.itemCards} dummy={dummy}/>} 
+      </div>
+    </div>
+  );
 };
 
-export default RestaurantCategory;  
+export default RestaurantCategory;
