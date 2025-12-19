@@ -1,15 +1,16 @@
-import useContext from "react";
+
 import { ID1_URL } from "../utils/constants";
 import { ID2_URL } from "../utils/constants";
 import { ID3_URL } from "../utils/constants";
 import { ID4_URL } from "../utils/constants";
 import { ID5_URL } from "../utils/constants";
-import userContext from "../utils/UserContext";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
+
 
 const RestaurantCard = (props) => {
-    const {resData} = props;
-    const {loggedInUser} = useContext(userContext);
-
+  const { resData } = props;
+  const { loggedInUser } = useContext(UserContext);
 
 
     const {

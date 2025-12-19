@@ -6,14 +6,25 @@ const useRestaurantMenu = (resId) => {
     const [resInfo, setResInfo] = useState(null);
 
     const fetchData = async () => {
-        const data = await fetch(MENU_API_URL + resId);
-        const json = await data.json();
-        setResInfo(json.data);
+        if (!resId) return;
+        try {
+            const response = await fetch(MENU_API_URL + resId);
+            if (!response.ok) {
+                console.error('fetch error status:', response.status);
+                setResInfo(null);
+                return;
+            }
+            const json = await response.json();
+            setResInfo(json.data ?? null);
+        } catch (err) {
+            console.error('Failed to fetch restaurant menu:', err);
+            setResInfo(null);
+        }
     };
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [resId]);
 
     return resInfo;
 };

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, use } from "react";
+import  { lazy, Suspense, use } from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -11,6 +11,12 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { useState, useEffect } from "react";
 import UserContext from "./utils/UserContext";
 //import Grocery from "./components/Grocery";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
+
+
+
 
 
 // ✅ Restaurant Data
@@ -18,26 +24,27 @@ import UserContext from "./utils/UserContext";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-section">
+    <footer className="footer  bg-gray-900 text-gray-300 mt-10">
+      <div className="footer-content max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 ">
+        <div className="footer-section text-2xl font-bold text-white mb-3 ">
           <h3>Food Express</h3>
-          <p>Delicious meals delivered right to your doorstep.</p>
+          <p className="text-sm leading-relaxed">
+            Delicious meals delivered right to your doorstep.</p>
         </div>
 
 
-        <div className="footer-section">
+        <div className="text-lg font-semibold text-white mb-3 footer-section">
           <h4>Connect</h4>
-          <ul>
-            <li>Instagram</li>
-            <li>Facebook</li>
-            <li>Twitter</li>
+          <ul className="space-y-2 text-sm">
+           <li className="hover:text-white cursor-pointer">Instagram</li>
+            <li className="hover:text-white cursor-pointer">Facebook</li>
+            <li className="hover:text-white cursor-pointer">Twitter</li>
           </ul>
         </div>
       </div>
 
       <hr className="footer-divider" />
-      <p className="footer-bottom">
+      <p className="footer-bottom border-t border-gray-700 py-4 text-center text-sm">
         © {new Date().getFullYear()} Foodie App. All rights reserved.
       </p>
     </footer>
@@ -65,13 +72,15 @@ const AppLayout = () => {
   }, []);
 
   return (
+    <Provider store={appStore}>
     <UserContext.Provider value={{ loggedInUser: userName }}>
-      <>
+      <div className="app">
         <Header />
         <Outlet />
         <Footer />
-      </>
+      </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -101,7 +110,7 @@ const appRouter = createBrowserRouter ([
       },
       {
         path : "/grocery",
-        element : ( <Suspense fallback= { <h1>Loading...</h1>} >,
+        element : ( <Suspense fallback= { <h1>Loading...</h1>} >
         <Grocery/></Suspense>
         ), // lazy loaded component
       },
@@ -109,6 +118,11 @@ const appRouter = createBrowserRouter ([
       {
           path : "/restaurant/:resId",
           element : <RestaurantMenu />,
+
+      },
+      {
+          path : "/cart",
+          element : <Cart />,
 
       }
       

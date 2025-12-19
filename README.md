@@ -58,6 +58,7 @@ Connect our store to our app
 Slice (cartSlice)
 dispatch(action)
 Selector
+
 Types of testing (devloper)
 Unit Testing
 Integration Testing
