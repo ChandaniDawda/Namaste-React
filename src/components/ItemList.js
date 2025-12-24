@@ -18,6 +18,8 @@
 
                 return (
                     <div
+                   
+                        data-testid="foodItems"
                         key={info.id ?? info.itemId ?? idx}
                         className="p-2 m-2 border-b-2 border-gray-200 flex items-center justify-between"
                     >

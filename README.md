@@ -59,11 +59,15 @@ Slice (cartSlice)
 dispatch(action)
 Selector
 
-Types of testing (devloper)
-Unit Testing
-Integration Testing
-End to End Testing - e2e testing
-Setting up Testing in our app
+#Types of testing (developer)
+
+Unit Testing :- Testing a unit in isolation
+Integration Testing :- when multiple components work together
+End to End Testing - e2e testing :- 
+
+
+#Setting up Testing in our app
+
 Install React Testing Library
 Installed jest
 Installed Babel dependencies
@@ -74,3 +78,6 @@ Install jsdom library
 Install @babel/preset-react - to make JSX work in test cases
 Include @babel/preset-react inside my babel config
 npm i -D @testing-library/jest-dom
+
+
+// jsdom is a browser like thing not a browser

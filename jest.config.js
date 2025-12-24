@@ -195,6 +195,13 @@ const config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
+  transform: {
+    "^.+\\.[tj]sx?$": "babel-jest",
+  },
+    moduleFileExtensions: ["js", "jsx", "json", "ts", "tsx"],
+  testMatch: ["**/__tests__/**/*.test.[jt]s?(x)"],
+  setupFilesAfterEnv: ["@testing-library/jest-dom"],
 };
 
 module.exports = config;

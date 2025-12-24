@@ -49,7 +49,7 @@ if (onlineStatus === false) {
 // conditional rendering
  /*  if (listOfRestaurants.length === 0) {
        return <Shimmer />;
- }  // show shimmer effect while data is loading
+ }  // show shimmer effect while data is loading 
                 OR 
        this way too written below */
 
@@ -69,8 +69,11 @@ if (onlineStatus === false) {
      Top Rated Restaurants  
      </button> 
      </div>
-     <input type= "text" className = "search-box border border-gray-400 rounded p-2" 
-     value = {searchText}  onChange={(e) => {
+     <input type= "text"
+     data-testid="search-input"
+      className = "search-box border border-gray-400 rounded p-2" 
+     value = {searchText}  
+     onChange={(e) => {
      setSearchText(e.target.value);
      }}
         />

@@ -16,6 +16,7 @@ global.fetch = jest.fn(() => {  // Mocking fetch function
     },
   });
 });
+
   it("should Search Res List for burger text input ", async () => {  // Test case to check if Body component renders correctly
 
     await act(async () => 
