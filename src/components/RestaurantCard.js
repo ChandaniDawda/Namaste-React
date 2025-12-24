@@ -9,24 +9,26 @@ import { useContext } from "react";
 
 
 const RestaurantCard = (props) => {
-  const { resData } = props;
-  const { loggedInUser } = useContext(UserContext);
+    const { resData } = props;
+    const { loggedInUser } = useContext(UserContext);
 
+    const data = resData?.info || resData || {};
 
     const {
-
         cloudinaryImageId,
         name,
         avgRating,
-        cuisines=[],
-        costForTwo, 
-        deliveryTime } = resData?.info || {};
+        cuisines = [],
+        costForTwo,
+    } = data;
+
+    const deliveryTime = data.deliveryTime || data.sla?.deliveryTime;
 
         const IMG_CDN_URL =
     "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
     return (
-        <div className="res-card  m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200" > 
+        <div data-testid="restaurant-card" className="res-card  m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200" > 
 
             <img className ="res-logo rounded-lg"
             alt = "res-logo" 
